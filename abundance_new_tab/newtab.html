@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abundance New Tab</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="newtab.css">
+</head>
+
+<body>
+    <!-- Canvas for particles -->
+    <canvas id="particles"></canvas>
+
+    <!-- CSS Wave Backgrounds -->
+    <!-- Futuristic Liquid Background -->
+    <div class="lux-bg"></div>
+
+    <!-- SVG Filter for Liquid Distortion -->
+    <svg style="display: none;">
+        <defs>
+            <filter id="liquid-warp">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="3" result="warp" />
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="wrap">
+        <div class="top">
+            <div class="brand">
+                <div class="dot"></div>
+                <span>Abundance</span>
+            </div>
+            <a href="facebook_tab.html" class="nav-link" title="Open Facebook Publisher">
+                Publisher
+            </a>
+        </div>
+
+        <div class="center">
+
+            <!-- Affirmation -->
+            <div class="affirmation" id="affirmation">
+                <!-- Text inserted by JS -->
+            </div>
+
+            <!-- Search -->
+            <div class="search">
+                <div class="searchShell">
+                    <span class="searchIcon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search Google..." autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Wins Panel -->
+            <div class="panel">
+                <div class="panelHeader">
+                    <h2>Today's Wins</h2>
+                    <span class="panelMeta" id="dateDisplay">Jan 24</span>
+                </div>
+
+                <div class="winInputRow">
+                    <input type="text" id="winInput" placeholder="Record a small win..." autocomplete="off">
+                    <button id="addWinBtn">Add</button>
+                </div>
+
+                <ul class="winList" id="winList">
+                    <!-- Wins items -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="newtab.js"></script>
+</body>
+
+</html>

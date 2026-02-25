@@ -1,0 +1,511 @@
+:root {
+    /* Emerald palette */
+    --emerald-0: #021a12;
+    /* Deepest background */
+    --emerald-1: #062C21;
+    --emerald-2: #146B52;
+    --emerald-highlight: #00FF9D;
+    /* Neon/Bright Green Highlight */
+
+    /* Silver/Platinum instead of Gold */
+    --platinum: #E5E4E2;
+    --silver-accent: #C0C0C0;
+
+    /* Replaced Gold with Dark Emerald tones as requested */
+    --accent-dark: #0B3D2E;
+    --accent-light: #50C878;
+
+    --text: rgba(255, 255, 255, .95);
+    --muted: rgba(255, 255, 255, .75);
+
+    --radius: 20px;
+    --shadow: 0 18px 60px rgba(0, 0, 0, .45);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    overflow: hidden;
+    background: #021a12;
+}
+
+/* Fullscreen particle canvas */
+#particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================
+   FUTURISTIC LIQUID IMAGE
+   ========================= */
+
+.lux-bg {
+    position: fixed;
+    inset: -50px;
+    z-index: 0;
+    /* User's image stretched slightly to allow for edge warping */
+    background: url("assets/emerald_flow.png") center/cover no-repeat;
+    /* Updated to "No Gold" version */
+
+    /* REPLACED SVG Filter with Light CSS Filters for Performance */
+    filter: saturate(1.1) contrast(1.15) brightness(0.9);
+
+    /* Overlay gradient for depth */
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
+
+    /* Add smooth CSS movement instead of SVG warp */
+    animation: glassA 25s ease-in-out infinite;
+}
+
+.lux-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(2, 26, 18, 0.3), rgba(0, 0, 0, 0.5));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+/* Slow luxury motion */
+@keyframes glassA {
+    0% {
+        transform: translate(-2%, -1%) scale(1.05) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(2%, 1%) scale(1.18) rotate(6deg);
+    }
+
+    100% {
+        transform: translate(-2%, -1%) scale(1.05) rotate(0deg);
+    }
+}
+
+@keyframes glassB {
+    0% {
+        transform: translate(2%, 2%) scale(1.06) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-2%, -1%) scale(1.22) rotate(-6deg);
+    }
+
+    100% {
+        transform: translate(2%, 2%) scale(1.06) rotate(0deg);
+    }
+}
+
+@keyframes glassC {
+    0% {
+        transform: translate(0%, 0%) scale(1.04);
+        opacity: .18;
+    }
+
+    50% {
+        transform: translate(1.5%, -1.4%) scale(1.14);
+        opacity: .30;
+    }
+
+    100% {
+        transform: translate(0%, 0%) scale(1.04);
+        opacity: .18;
+    }
+}
+
+@keyframes specMove {
+
+    0%,
+    100% {
+        transform: translate(0%, 0%) scale(1.02);
+        opacity: .18;
+    }
+
+    50% {
+        transform: translate(1.2%, -1.1%) scale(1.06);
+        opacity: .28;
+    }
+}
+
+@keyframes glitterTwinkle {
+
+    0%,
+    100% {
+        opacity: .12;
+    }
+
+    50% {
+        opacity: .22;
+    }
+}
+
+/* Ensure UI is above background */
+.wrap,
+main,
+.content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Layout */
+.wrap {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    gap: 18px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, .82);
+    letter-spacing: .2px;
+    user-select: none;
+}
+
+.brand .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, var(--emerald-highlight), var(--accent-dark));
+    box-shadow: 0 0 18px rgba(80, 200, 120, .35);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+    margin-left: 12px;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--emerald-highlight);
+    border-color: var(--emerald-highlight);
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
+}
+
+.center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+}
+
+/* Search */
+.search {
+    width: min(760px, 92vw);
+}
+
+.searchShell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    border-radius: 999px;
+    /* Glassy Platinum with hint of Green */
+    background: linear-gradient(135deg, rgba(229, 228, 226, 0.15), rgba(6, 44, 33, 0.1));
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+    /* Platinum / Emerald Border Gradient */
+    border: 1px solid transparent;
+    background-image:
+        linear-gradient(135deg, rgba(229, 228, 226, 0.15), rgba(6, 44, 33, 0.1)),
+        linear-gradient(135deg, var(--platinum), var(--accent-light), var(--platinum));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchShell:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(229, 228, 226, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.searchIcon {
+    color: var(--emerald-highlight);
+    font-size: 18px;
+    padding-left: 6px;
+    transform: translateY(-1px);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    caret-color: var(--emerald-highlight);
+}
+
+.search input::placeholder {
+    color: rgba(255, 255, 255, .60);
+}
+
+/* Affirmation */
+.affirmation {
+    width: min(820px, 92vw);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(20px, 2.1vw, 28px);
+    line-height: 1.35;
+    color: rgba(255, 255, 255, .95);
+    /* Brighter white base */
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    /* Golden Glow requested by user */
+    text-shadow:
+        0 0 10px rgba(212, 175, 55, 0.4),
+        0 0 20px rgba(212, 175, 55, 0.2),
+        0 8px 30px rgba(0, 0, 0, .45);
+}
+
+.affirmation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.affirmation .gold {
+    color: var(--emerald-highlight);
+    text-shadow: 0 0 22px rgba(0, 255, 157, .25);
+}
+
+/* Win log panel - Classical Wood Style */
+.panel {
+    width: min(760px, 92vw);
+    margin: 0 auto;
+    padding: 24px 28px 20px;
+    border-radius: var(--radius);
+
+    /* Dark Wood Background */
+    background: url("assets/wood_texture.png") center/cover;
+    position: relative;
+    overflow: hidden;
+
+    /* Highlighted Green Line (Border) */
+    border: 2px solid var(--emerald-highlight);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(0, 255, 157, 0.15);
+    /* Subtle green glow */
+
+    font-family: "Playfair Display", serif;
+    /* Classical Font */
+    color: white;
+    /* White writing */
+}
+
+/* Darken the wood slightly */
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* Shade overlay */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure content is above overlay */
+.panel>* {
+    position: relative;
+    z-index: 1;
+}
+
+.panelHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.panelHeader h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: .5px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.panelMeta {
+    color: rgba(255, 255, 255, .8);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.winInputRow {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+#winInput {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, .3);
+    color: #fff;
+    outline: none;
+    font-family: inherit;
+    /* Keep serif */
+    font-size: 16px;
+    transition: border-color .25s ease, box-shadow .25s ease;
+    /* luxury hover */
+}
+
+#winInput:focus {
+    border-color: var(--emerald-highlight);
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+    /* Contrast font for button */
+    color: #000;
+    /* Bright Green Button */
+    background: var(--emerald-highlight);
+    transition: transform .22s ease, filter .22s ease;
+    box-shadow: 0 4px 12px rgba(0, 255, 157, 0.2);
+    /* 0.2–0.3s premium hover */
+}
+
+button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+
+button:active {
+    transform: translateY(0px);
+    filter: brightness(.98);
+}
+
+.ghost {
+    background: transparent;
+    color: rgba(255, 255, 255, .70);
+    border: 1px solid rgba(255, 255, 255, .16);
+    padding: 10px 12px;
+}
+
+.ghost:hover {
+    border-color: var(--emerald-highlight);
+    color: rgba(255, 255, 255, .86);
+}
+
+.winList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 180px;
+    /* keeps it classy */
+    overflow: auto;
+    padding-right: 6px;
+}
+
+.winList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.winList::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .3);
+    border-radius: 999px;
+}
+
+.win {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .1);
+    transition: background 0.2s;
+}
+
+.win:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+.winText {
+    color: #fff;
+    font-size: 15px;
+    opacity: .95;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.del {
+    background: transparent;
+    color: rgba(255, 255, 255, .60);
+    border: 1px solid transparent;
+    padding: 6px 8px;
+    border-radius: 6px;
+    box-shadow: none;
+    font-family: inherit;
+}
+
+.del:hover {
+    background: rgba(255, 0, 0, 0.2);
+    color: #fff;
+}
+
+.panelFooter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
